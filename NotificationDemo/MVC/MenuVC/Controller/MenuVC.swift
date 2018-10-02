@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+
+var typeData = [TypeData]()
 
 class MenuVC: UIViewController {
     
@@ -23,16 +26,20 @@ class MenuVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        myClosure = { (sender:UIButton) -> Void in
-            Utilities.showAlert(title: "NotificationDemo", message: "Notification Received.", viewcontroller: self, leftButtonClick: {
-                print("Closure leftButtonClick called.")
-            }, rightButtonClick: {
-                print("Closure rightButtonClick called.")
-            })
-        }
         
         setMenuData()
+        getTypeDataAPI()
+        
         // myClosure!(sender)  // Closure called on button action or whatever else
+        
+        myClosure = { (sender:UIButton) -> Void in
+            
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,6 +79,22 @@ extension MenuVC {
         menuItems = [item1,item2,item3,item4,item5,item6]
         collection_mainMenu.reloadData()
     }
+    
+}
+
+// MARK: - Utility methods
+extension MenuVC {
+    func parseTypeData(response: NSArray) {
+        typeData = []
+        for i in response {
+            let typeDict = i as! NSDictionary
+            let typeItem = TypeData(dictionary: typeDict)
+            //            let groupItem = Groups(dictionary: groupDict)
+            typeData.append(typeItem!)
+        }
+        print("------------------------------")
+        print(typeData)
+    }
 }
 
 // MARK: - CollectionView methods
@@ -105,6 +128,18 @@ extension MenuVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         return CGSize(width: width, height: width)
     }
     
+}
+
+// MARK: - Web Services
+extension MenuVC {
+    func getTypeDataAPI() {
+        let urlStr = APIConfiguration.baseURL.rawValue + APIConfiguration.getTypeData.rawValue
+        Alamofire.request(URL(string: urlStr)!).responseJSON { (response) in
+            print(response)
+            let arr = response.result.value as! NSArray
+            self.parseTypeData(response: arr)
+        }
+    }
 }
 
 

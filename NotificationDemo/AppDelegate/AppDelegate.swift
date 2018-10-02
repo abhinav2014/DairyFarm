@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        
+        
         Messaging.messaging().delegate = self
         
         if #available(iOS 10.0, *) {
@@ -44,10 +46,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         application.registerForRemoteNotifications()
+        
+        if AppConfig.shared.token != "" {
+            setRootViewController()
+        }
+        
         return true
     }
     
-    
+    func setRootViewController()   {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let nv = mainStoryboard.instantiateViewController(withIdentifier: "MenuRootNavigationController") as! UINavigationController
+        self.window?.rootViewController = nv
+        self.window?.makeKeyAndVisible()
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -123,6 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nsdataStr = NSData.init(data: deviceToken)
         let deviceStr = nsdataStr.description.trimmingCharacters(in: characterSet).replacingOccurrences(of: " ", with: "")
         print(deviceStr)
+        AppConfig.shared.apnsToken = deviceStr
 //        InstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenTypeSandbox)
 //        InstanceID.instanceID().
         // With swizzling disabled you must set the APNs token here.

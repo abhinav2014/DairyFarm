@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5701125E215678BE007304F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5701125D215678BE007304F3 /* GoogleService-Info.plist */; };
+		5703D1A02163B21200002620 /* DropDownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5703D19F2163B21200002620 /* DropDownView.xib */; };
+		5703D1A22163B24100002620 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5703D1A12163B24100002620 /* DropDownView.swift */; };
+		5714861521634B9700ABF299 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5714861421634B9700ABF299 /* AppConfig.swift */; };
 		578C39A12160F16500C1E223 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578C39A02160F16500C1E223 /* Utilities.swift */; };
 		578C39A82161007F00C1E223 /* LoginSignup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578C39A72161007F00C1E223 /* LoginSignup.storyboard */; };
 		578C39AA216100A500C1E223 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578C39A9216100A500C1E223 /* MenuVC.swift */; };
@@ -25,6 +28,10 @@
 		578C39CF21617D4100C1E223 /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578C39CC21617D4100C1E223 /* Breed.swift */; };
 		578C39D72161810C00C1E223 /* AIDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578C39D62161810C00C1E223 /* AIDetailsVC.swift */; };
 		578C39DD216185B500C1E223 /* AnimalRegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578C39DC216185B500C1E223 /* AnimalRegistrationVC.swift */; };
+		5791B215216404AB00531561 /* LiveStockGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791B211216404AA00531561 /* LiveStockGroup.swift */; };
+		5791B216216404AB00531561 /* AnimalDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791B212216404AA00531561 /* AnimalDetailsModel.swift */; };
+		5791B217216404AB00531561 /* LiveStockBreed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791B213216404AB00531561 /* LiveStockBreed.swift */; };
+		5791B218216404AB00531561 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791B214216404AB00531561 /* Type.swift */; };
 		57D53B8221538EBA001395E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D53B8121538EBA001395E9 /* AppDelegate.swift */; };
 		57D53B8721538EBA001395E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57D53B8521538EBA001395E9 /* Main.storyboard */; };
 		57D53B8921538EC0001395E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D53B8821538EC0001395E9 /* Assets.xcassets */; };
@@ -56,6 +63,9 @@
 /* Begin PBXFileReference section */
 		006E893D7A808929370C52AB /* Pods-NotificationDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationDemoTests/Pods-NotificationDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		5701125D215678BE007304F3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5703D19F2163B21200002620 /* DropDownView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownView.xib; sourceTree = "<group>"; };
+		5703D1A12163B24100002620 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
+		5714861421634B9700ABF299 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		573FD72CF75F56D94E52A65E /* libPods-NotificationDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NotificationDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		578C39A02160F16500C1E223 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		578C39A72161007F00C1E223 /* LoginSignup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginSignup.storyboard; sourceTree = "<group>"; };
@@ -74,6 +84,10 @@
 		578C39CC21617D4100C1E223 /* Breed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
 		578C39D62161810C00C1E223 /* AIDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIDetailsVC.swift; sourceTree = "<group>"; };
 		578C39DC216185B500C1E223 /* AnimalRegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalRegistrationVC.swift; sourceTree = "<group>"; };
+		5791B211216404AA00531561 /* LiveStockGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveStockGroup.swift; sourceTree = "<group>"; };
+		5791B212216404AA00531561 /* AnimalDetailsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalDetailsModel.swift; sourceTree = "<group>"; };
+		5791B213216404AB00531561 /* LiveStockBreed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveStockBreed.swift; sourceTree = "<group>"; };
+		5791B214216404AB00531561 /* Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		57975C8B215C13E10048120B /* NotificationDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationDemo.entitlements; sourceTree = "<group>"; };
 		57D53B7E21538EBA001395E9 /* NotificationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotificationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D53B8121538EBA001395E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,9 +148,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5703D19E2163B1EF00002620 /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				5703D19F2163B21200002620 /* DropDownView.xib */,
+				5703D1A12163B24100002620 /* DropDownView.swift */,
+			);
+			path = DropDown;
+			sourceTree = "<group>";
+		};
+		5714861321634B6400ABF299 /* AppConfig */ = {
+			isa = PBXGroup;
+			children = (
+				5714861421634B9700ABF299 /* AppConfig.swift */,
+			);
+			path = AppConfig;
+			sourceTree = "<group>";
+		};
 		578C399F2160F14A00C1E223 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				5703D19E2163B1EF00002620 /* DropDown */,
+				5714861321634B6400ABF299 /* AppConfig */,
 				578C39C921617D2900C1E223 /* TypeDataModels */,
 				578C39A02160F16500C1E223 /* Utilities.swift */,
 				578C39BA2161417A00C1E223 /* Constants.swift */,
@@ -248,6 +281,10 @@
 		578C39C121616F6700C1E223 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5791B212216404AA00531561 /* AnimalDetailsModel.swift */,
+				5791B213216404AB00531561 /* LiveStockBreed.swift */,
+				5791B211216404AA00531561 /* LiveStockGroup.swift */,
+				5791B214216404AB00531561 /* Type.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -521,6 +558,7 @@
 				578C39A82161007F00C1E223 /* LoginSignup.storyboard in Resources */,
 				57D53B8C21538EC0001395E9 /* LaunchScreen.storyboard in Resources */,
 				5701125E215678BE007304F3 /* GoogleService-Info.plist in Resources */,
+				5703D1A02163B21200002620 /* DropDownView.xib in Resources */,
 				57D53B8921538EC0001395E9 /* Assets.xcassets in Resources */,
 				57D53B8721538EBA001395E9 /* Main.storyboard in Resources */,
 			);
@@ -632,9 +670,15 @@
 				578C39D72161810C00C1E223 /* AIDetailsVC.swift in Sources */,
 				578C39AE216100EC00C1E223 /* LoginVC.swift in Sources */,
 				578C39C321616F8A00C1E223 /* AnimalListVC.swift in Sources */,
+				5791B215216404AB00531561 /* LiveStockGroup.swift in Sources */,
 				578C39AC216100BF00C1E223 /* SignUpVC.swift in Sources */,
+				5714861521634B9700ABF299 /* AppConfig.swift in Sources */,
+				5791B217216404AB00531561 /* LiveStockBreed.swift in Sources */,
+				5703D1A22163B24100002620 /* DropDownView.swift in Sources */,
 				578C39BD2161479600C1E223 /* ForgotPasswordVC.swift in Sources */,
 				578C39C52161753B00C1E223 /* AnimalListCell.swift in Sources */,
+				5791B216216404AB00531561 /* AnimalDetailsModel.swift in Sources */,
+				5791B218216404AB00531561 /* Type.swift in Sources */,
 				578C39C821617C7100C1E223 /* User.swift in Sources */,
 				57D53B8221538EBA001395E9 /* AppDelegate.swift in Sources */,
 				578C39DD216185B500C1E223 /* AnimalRegistrationVC.swift in Sources */,

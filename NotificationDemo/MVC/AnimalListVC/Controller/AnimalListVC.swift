@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class AnimalListVC: UIViewController {
     
@@ -17,14 +18,18 @@ class AnimalListVC: UIViewController {
     @IBOutlet weak var lbl_title: UILabel!
     
     // MARK: - Variables
-    var animalsList = [String]()
+    var animalsList = [AnimalDetailsModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        animalsList = ["Animal1","Animal2","Animal3","Animal4","Animal5"]
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        callGetAnimalListAPI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,6 +56,20 @@ class AnimalListVC: UIViewController {
     
 }
 
+// MARK: - Utility methods
+extension AnimalListVC {
+    func parseAnimalData(response: NSArray) {
+        self.animalsList = []
+        for i in response {
+            let animal = AnimalDetailsModel(dictionary: i as! NSDictionary)
+            self.animalsList.append(animal!)
+        }
+        DispatchQueue.main.async {
+            self.table_animalList.reloadData()
+        }
+    }
+}
+
 // MARK : - UITableView methods
 
 extension AnimalListVC: UITableViewDataSource, UITableViewDelegate {
@@ -60,6 +79,10 @@ extension AnimalListVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AnimalListCell", for: indexPath) as! AnimalListCell
+        let animal = self.animalsList[indexPath.row]
+        cell.lbl1.text = "Animal ID: \(animal.id!)"
+        cell.lbl2.text = "\(String(describing: animal.type!.typeName!)):\(String(describing: animal.liveStockGroup!.typeName!)):\(String(describing: animal.liveStockBreed!.breedName!))"
+        cell.lbl3.text = "Medical Number: \(animal.medicalNumber!)"
         return cell
     }
     
@@ -68,4 +91,23 @@ extension AnimalListVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     
+}
+
+// MARK: - Web Services
+extension AnimalListVC {
+    func callGetAnimalListAPI() {
+        let params = ["accessToken":AppConfig.shared.token, "animalID":0] as [String : Any]
+        let urlStr = APIConfiguration.baseURL.rawValue + APIConfiguration.getAnimals.rawValue
+        Alamofire.request(URL(string: urlStr)!, method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:]).responseJSON { (response) in
+            print(response)
+            switch response.result {
+            case .success:
+                let dict = response.result.value as! NSDictionary
+                let arr = dict["data"] as! NSArray
+                self.parseAnimalData(response: arr)
+            case .failure:
+                print("Failure")
+            }
+        }
+    }
 }

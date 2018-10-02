@@ -14,6 +14,7 @@ let kOK = "OK"
 let kCell = "Cell"
 
 // MARK: - Alerts
+let kAlertTitle = "Dairy Farm Manager"
 let kAlertPasswordCount = "Password must contain more than \(kPasswordCharacterCount) characters"
 let kAlertSomethingWentWrong = "Something went wrong. Please try again later!"
 let kAlertInvalidNumber = "Invalid Number Entered"
@@ -33,4 +34,5 @@ enum APIConfiguration: String {
     case animalRegistration = "/livestock/registeration"
     case getAnimals = "//livestock/getAnimals"
     case getTypeData = "//livestock/0/getTypeData"
+    case registerDevice = "/registerDevice"
 }

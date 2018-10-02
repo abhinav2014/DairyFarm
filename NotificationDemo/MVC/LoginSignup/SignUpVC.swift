@@ -49,6 +49,8 @@ class SignUpVC: UIViewController {
     
     // MARK: - Called Actions
     @IBAction func btn_signUpTapped(_ sender: UIButton) {
+        
+        self.view.endEditing(true)
         callSignUpAPI()
     }
     
@@ -56,20 +58,43 @@ class SignUpVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-
 }
+
+// MARK: - Utility methods
+extension SignUpVC {
+    func setRootViewController()   {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let nv = mainStoryboard.instantiateViewController(withIdentifier: "MenuRootNavigationController") as! UINavigationController
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        appdelegate.window?.rootViewController = nv
+        appdelegate.window?.makeKeyAndVisible()
+    }
+}
+
 
 // MARK: - Web Services
 extension SignUpVC {
     func callSignUpAPI() {
-        var params = [String: String]()
-        let headers = ["Content-type":"Application/json","Accept":"Application/json"]
-        params = ["name":"txt_firstName.text!","lastName":"txt_lastName.text!","username":"txt_userName.text!","email":"txt_email.text!" ,"password":"txt_password.text!"]
+        var params = [String: Any]()
+        let headers = ["Content-Type":"application/json"]
+        params = ["name":txt_firstName.text!,"lastName":txt_lastName.text!,"username":txt_userName.text!,"email":txt_email.text! ,"password":txt_password.text!]
         let urlStr = APIConfiguration.baseURL.rawValue + APIConfiguration.signUp.rawValue
-        Alamofire.request(URL(string: urlStr)!, method: .post, parameters: params, encoding: URLEncoding.default, headers: headers).responseJSON { (response) in
+        Alamofire.request(URL(string: urlStr)!, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             print(response)
+            let dict = response.result.value as! NSDictionary
+            if let userData = dict.value(forKey: "data") as? NSDictionary {
+                let user = User(dictionary: userData.value(forKey: "user") as! NSDictionary)
+//                print(user?.token!)
+                let token = user?.token!
+                AppConfig.shared.token = token!
+                // set root view controller
+                self.setRootViewController()
+            }
+            if let message = dict.value(forKey: "message") as? String {
+                DispatchQueue.main.async {
+                    Utilities.showAlert(title: kAlertTitle, message: message, viewcontroller: self, okClick: { })
+                }
+            }
         }
-        
     }
 }

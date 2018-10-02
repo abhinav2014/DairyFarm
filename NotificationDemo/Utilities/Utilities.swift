@@ -13,7 +13,16 @@ import UIKit
 struct Utilities {
     
     // MARK: - Alert Methods
-    static func showAlert(title:String, message: String, viewcontroller: UIViewController, leftButtonClick: @escaping () -> Void, rightButtonClick: @escaping () -> Void) {
+    static func showAlert(title:String, message: String, viewcontroller: UIViewController, okClick: @escaping () -> Void) {
+        print("Alert called.")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            okClick()
+        }))
+        viewcontroller.present(alert, animated: true, completion: nil)
+    }
+    
+    static func showAlertWithTwoActions(title:String, message: String, viewcontroller: UIViewController, leftButtonClick: @escaping () -> Void, rightButtonClick: @escaping () -> Void) {
         print("Alert called.")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) in
