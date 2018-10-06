@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.7.3)
+  - BarcodeScanner (4.1.3)
   - DropDown (2.3.2)
   - Firebase/Core (5.7.0):
     - Firebase/CoreOnly
@@ -57,17 +58,21 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.1)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Alamofire
+  - BarcodeScanner
   - DropDown
   - Firebase/Core
   - Firebase/Messaging
   - IQKeyboardManagerSwift
+  - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - BarcodeScanner
     - DropDown
     - Firebase
     - FirebaseAnalytics
@@ -79,9 +84,11 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - nanopb
     - Protobuf
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  BarcodeScanner: fce1ad2b3f28286b1ab5091fe0979789618bee27
   DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
   Firebase: 734a4f92957aa6c40e7ae3fda3d9359e1890aa87
   FirebaseAnalytics: 993577e91157feb40945abedd6ab346d8a4b6ac8
@@ -93,7 +100,8 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 656a41464a47ea336e18a00a0d101608b37cb9a0
+PODFILE CHECKSUM: 35caf79c04de16ff92f172bbf1fb827627fcdb0f
 
 COCOAPODS: 1.5.3

@@ -68,6 +68,8 @@ extension AnimalListVC {
             self.table_animalList.reloadData()
         }
     }
+    
+    
 }
 
 // MARK : - UITableView methods
@@ -96,15 +98,30 @@ extension AnimalListVC: UITableViewDataSource, UITableViewDelegate {
 // MARK: - Web Services
 extension AnimalListVC {
     func callGetAnimalListAPI() {
+        SVProgressHUD.show()
         let params = ["accessToken":AppConfig.shared.token, "animalID":0] as [String : Any]
         let urlStr = APIConfiguration.baseURL.rawValue + APIConfiguration.getAnimals.rawValue
         Alamofire.request(URL(string: urlStr)!, method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:]).responseJSON { (response) in
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+            }
             print(response)
             switch response.result {
             case .success:
                 let dict = response.result.value as! NSDictionary
-                let arr = dict["data"] as! NSArray
-                self.parseAnimalData(response: arr)
+                if let message = dict["message"] as? String {
+                    if message == "access_token expired" {
+                        DispatchQueue.main.async {
+                            Utilities.showAlert(title: kAlertTitle, message: "Session expired. Please login again", viewcontroller: self, okClick: {
+                                Utilities.shared.setRootViewConroller(controller: RootVC.Login.rawValue)
+                            })
+                        }
+                    }
+                }
+                if let arr = dict["data"] as? NSArray {
+                    self.parseAnimalData(response: arr)
+                }
+                
             case .failure:
                 print("Failure")
             }

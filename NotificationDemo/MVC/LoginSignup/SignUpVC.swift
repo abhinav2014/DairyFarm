@@ -62,24 +62,22 @@ class SignUpVC: UIViewController {
 
 // MARK: - Utility methods
 extension SignUpVC {
-    func setRootViewController()   {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nv = mainStoryboard.instantiateViewController(withIdentifier: "MenuRootNavigationController") as! UINavigationController
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
-        appdelegate.window?.rootViewController = nv
-        appdelegate.window?.makeKeyAndVisible()
-    }
+    
 }
 
 
 // MARK: - Web Services
 extension SignUpVC {
     func callSignUpAPI() {
+        SVProgressHUD.show()
         var params = [String: Any]()
         let headers = ["Content-Type":"application/json"]
         params = ["name":txt_firstName.text!,"lastName":txt_lastName.text!,"username":txt_userName.text!,"email":txt_email.text! ,"password":txt_password.text!]
         let urlStr = APIConfiguration.baseURL.rawValue + APIConfiguration.signUp.rawValue
         Alamofire.request(URL(string: urlStr)!, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+            }
             print(response)
             let dict = response.result.value as! NSDictionary
             if let userData = dict.value(forKey: "data") as? NSDictionary {
@@ -88,7 +86,7 @@ extension SignUpVC {
                 let token = user?.token!
                 AppConfig.shared.token = token!
                 // set root view controller
-                self.setRootViewController()
+                Utilities.shared.setRootViewConroller(controller: RootVC.Menu.rawValue)
             }
             if let message = dict.value(forKey: "message") as? String {
                 DispatchQueue.main.async {

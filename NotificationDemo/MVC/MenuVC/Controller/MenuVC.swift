@@ -65,6 +65,11 @@ class MenuVC: UIViewController {
     }
     
     
+    @IBAction func btn_logoutTapped(_ sender: UIButton) {
+        Utilities.shared.setRootViewConroller(controller: RootVC.Login.rawValue)
+    }
+    
+    
 }
 
 // MARK: - Initial Set Up
@@ -136,8 +141,14 @@ extension MenuVC {
         let urlStr = APIConfiguration.baseURL.rawValue + APIConfiguration.getTypeData.rawValue
         Alamofire.request(URL(string: urlStr)!).responseJSON { (response) in
             print(response)
-            let arr = response.result.value as! NSArray
-            self.parseTypeData(response: arr)
+            if let arr = response.result.value as? NSArray {
+                self.parseTypeData(response: arr)
+            } else {
+                DispatchQueue.main.async {
+                    Utilities.showAlert(title: kAlertTitle, message: "Configuration Data not fetched!", viewcontroller: self, okClick: {})
+                }
+            }
+            
         }
     }
 }

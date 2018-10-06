@@ -12,7 +12,8 @@ target 'NotificationDemo' do
   pod 'IQKeyboardManagerSwift'
   pod 'Alamofire'
   pod 'DropDown'
-
+  pod 'SVProgressHUD'
+  pod 'BarcodeScanner'
   
   target 'NotificationDemoTests' do
     inherit! :search_paths

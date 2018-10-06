@@ -35,4 +35,16 @@ enum APIConfiguration: String {
     case getAnimals = "//livestock/getAnimals"
     case getTypeData = "//livestock/0/getTypeData"
     case registerDevice = "/registerDevice"
+    case AIDetailSave = "/insemination/save"
+}
+
+// MARK: - Storyboard IDs
+enum StoryboardID: String {
+    case loginNavigationController = "LoginRootNavigationController"
+    case menuNavigationController = "MenuRootNavigationController"
+}
+
+public enum RootVC: String {
+    case Login = "Login"
+    case Menu = "Menu"
 }

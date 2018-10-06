@@ -48,5 +48,7 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera usage needed for Bar Code scanning and Taking Pictures</string>
 </dict>
 </plist>

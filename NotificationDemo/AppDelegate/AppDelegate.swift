@@ -48,18 +48,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         if AppConfig.shared.token != "" {
-            setRootViewController()
+            Utilities.shared.setRootViewConroller(controller: RootVC.Menu.rawValue)
         }
+        
+        
         
         return true
     }
     
-    func setRootViewController()   {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nv = mainStoryboard.instantiateViewController(withIdentifier: "MenuRootNavigationController") as! UINavigationController
-        self.window?.rootViewController = nv
-        self.window?.makeKeyAndVisible()
-    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -209,3 +205,4 @@ extension AppDelegate : MessagingDelegate {
     }
     // [END ios_10_data_message]
 }
+

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 
+
 class LoginVC: UIViewController {
     
     // MARK: - Outlets
@@ -68,25 +69,23 @@ class LoginVC: UIViewController {
 
 // MARK: - Utility methods
 extension LoginVC {
-    func setRootViewController()   {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nv = mainStoryboard.instantiateViewController(withIdentifier: "MenuRootNavigationController") as! UINavigationController
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
-        appdelegate.window?.rootViewController = nv
-        appdelegate.window?.makeKeyAndVisible()
-    }
+    
 }
 
 
 // MARK: - Web Services
 extension LoginVC {
     func callLoginAPI() {
+        SVProgressHUD.show()
         var params = [String: Any]()
         let headers = ["Content-Type":"application/json"]
         params = ["username":txt_email.text!,"password":txt_password.text!]
         let urlStr = APIConfiguration.baseURL.rawValue + APIConfiguration.login.rawValue
         Alamofire.request(URL(string: urlStr)!, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             print(response)
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+            }
             switch response.result {
             case .success:
                 let dict = response.result.value as! NSDictionary
@@ -95,7 +94,7 @@ extension LoginVC {
                     AppConfig.shared.token = token
                     //                print(user?.token!)
                     // set root view controller
-                    self.setRootViewController()
+                    Utilities.shared.setRootViewConroller(controller: RootVC.Menu.rawValue)
                     self.callSendDeviceTokenAPI()
                 }
                 if let message = dict.value(forKey: "message") as? String {

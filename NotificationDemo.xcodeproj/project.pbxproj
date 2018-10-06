@@ -32,6 +32,7 @@
 		5791B216216404AB00531561 /* AnimalDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791B212216404AA00531561 /* AnimalDetailsModel.swift */; };
 		5791B217216404AB00531561 /* LiveStockBreed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791B213216404AB00531561 /* LiveStockBreed.swift */; };
 		5791B218216404AB00531561 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791B214216404AB00531561 /* Type.swift */; };
+		57C0E7D02168A432003FE78C /* testFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C0E7CF2168A432003FE78C /* testFile.m */; };
 		57D53B8221538EBA001395E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D53B8121538EBA001395E9 /* AppDelegate.swift */; };
 		57D53B8721538EBA001395E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57D53B8521538EBA001395E9 /* Main.storyboard */; };
 		57D53B8921538EC0001395E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D53B8821538EC0001395E9 /* Assets.xcassets */; };
@@ -89,6 +90,8 @@
 		5791B213216404AB00531561 /* LiveStockBreed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveStockBreed.swift; sourceTree = "<group>"; };
 		5791B214216404AB00531561 /* Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		57975C8B215C13E10048120B /* NotificationDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationDemo.entitlements; sourceTree = "<group>"; };
+		57C0E7CE2168A431003FE78C /* NotificationDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NotificationDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		57C0E7CF2168A432003FE78C /* testFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testFile.m; sourceTree = "<group>"; };
 		57D53B7E21538EBA001395E9 /* NotificationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotificationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D53B8121538EBA001395E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57D53B8621538EBA001395E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -293,6 +296,8 @@
 			isa = PBXGroup;
 			children = (
 				578C39C721617C7100C1E223 /* User.swift */,
+				57C0E7CF2168A432003FE78C /* testFile.m */,
+				57C0E7CE2168A431003FE78C /* NotificationDemo-Bridging-Header.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -511,6 +516,7 @@
 				TargetAttributes = {
 					57D53B7D21538EBA001395E9 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 0940;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -606,13 +612,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NotificationDemo/Pods-NotificationDemo-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/BarcodeScanner/BarcodeScanner.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/BarcodeScanner/Localization.bundle",
 				"${PODS_ROOT}/DropDown/DropDown/resources/DropDownCell.xib",
 				"${PODS_ROOT}/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BarcodeScanner.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Localization.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DropDownCell.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -683,6 +695,7 @@
 				57D53B8221538EBA001395E9 /* AppDelegate.swift in Sources */,
 				578C39DD216185B500C1E223 /* AnimalRegistrationVC.swift in Sources */,
 				578C39B3216102F300C1E223 /* MainMenuCell.swift in Sources */,
+				57C0E7D02168A432003FE78C /* testFile.m in Sources */,
 				578C39BB2161417A00C1E223 /* Constants.swift in Sources */,
 				578C39CE21617D4100C1E223 /* Groups.swift in Sources */,
 			);
@@ -858,6 +871,7 @@
 			baseConfigurationReference = ABCD31A109F62538C04B501C /* Pods-NotificationDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = NotificationDemo/NotificationDemo.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9CQN88ZKYW;
@@ -871,6 +885,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d8e41513-8d1e-4b6b-8cfe-72eed14fa467";
 				PROVISIONING_PROFILE_SPECIFIER = NotificationDemoDevProfile;
+				SWIFT_OBJC_BRIDGING_HEADER = "NotificationDemo/MVC/LoginSignup/Models/NotificationDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -881,6 +897,7 @@
 			baseConfigurationReference = A2FB7D31AFB5EF736D758344 /* Pods-NotificationDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = NotificationDemo/NotificationDemo.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9CQN88ZKYW;
@@ -894,6 +911,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d8e41513-8d1e-4b6b-8cfe-72eed14fa467";
 				PROVISIONING_PROFILE_SPECIFIER = NotificationDemoDevProfile;
+				SWIFT_OBJC_BRIDGING_HEADER = "NotificationDemo/MVC/LoginSignup/Models/NotificationDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

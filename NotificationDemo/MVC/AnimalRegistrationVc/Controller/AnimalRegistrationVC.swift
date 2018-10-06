@@ -9,6 +9,7 @@
 import UIKit
 import DropDown
 import Alamofire
+import BarcodeScanner
 
 class AnimalRegistrationVC: UIViewController {
     
@@ -36,6 +37,10 @@ class AnimalRegistrationVC: UIViewController {
     
     @IBOutlet weak var btn_calendar: UIButton!
     
+    
+    @IBOutlet weak var btn_lastHeatDate: UIButton!
+    
+    
     @IBOutlet weak var btn_animalPic: UIButton!
     
     @IBOutlet weak var btn_register: UIButton!
@@ -48,6 +53,7 @@ class AnimalRegistrationVC: UIViewController {
     var dropDownDict = [[String:Any]]()
 //    var dropDown = DropDown()
     
+    // MARK: - View Life Cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,6 +63,7 @@ class AnimalRegistrationVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureView()
+//        Utilities.shared.setSVP()
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,16 +89,36 @@ class AnimalRegistrationVC: UIViewController {
     }
     
     @IBAction func btn_scanTapped(_ sender: UIButton) {
+        let viewController = BarcodeScannerViewController()
+        viewController.codeDelegate = self
+        viewController.errorDelegate = self
+        viewController.dismissalDelegate = self
+        
+        present(viewController, animated: true, completion: nil)
     }
     
     @IBAction func btn_calendarTapped(_ sender: UIButton) {
+        switch sender {
+        case btn_calendar:
+            txt_dob.becomeFirstResponder()
+        case btn_lastHeatDate:
+            txt_lastHeatDate.becomeFirstResponder()
+        default:
+            print("Invalid option.")
+        }
     }
     
     @IBAction func btn_animalPicTapped(_ sender: UIButton) {
     }
     
     @IBAction func btn_submitTapped(_ sender: UIButton) {
-        callAnimalRegistrationAPI()
+        if txt_dob.text == "" {
+            Utilities.showAlert(title: kAlertTitle, message: AlertMessages.enterDOB.rawValue, viewcontroller: self, okClick: {})
+        } else if txt_currentWt.text == "" {
+            Utilities.showAlert(title: kAlertTitle, message: AlertMessages.enterCurrentWeight.rawValue, viewcontroller: self, okClick: {})
+        } else {
+            callAnimalRegistrationAPI()
+        }
     }
     
     
@@ -203,6 +230,7 @@ extension AnimalRegistrationVC: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField == txt_type || textField == txt_group || textField == txt_breed || textField == txt_gender {
+            self.view.endEditing(true)
             self.setUpDropDown(textField: textField)
             return false
         } else if textField == txt_dob {
@@ -239,11 +267,12 @@ extension AnimalRegistrationVC: UITextFieldDelegate {
 //MARK: - Web Services
 extension AnimalRegistrationVC {
     func callAnimalRegistrationAPI() {
+        SVProgressHUD.show()
         let params = [
             "data": [
                 "currentWeight": txt_currentWt.text!,
                 "imageName": "string",
-                "medicalNumber": txt_medicalNo.text!,
+                "medicalNumber": 0,
                 "liveStockGroup": [
                     "groupID": selectedGroupId,
                     "typeID": selectedTypeId
@@ -264,9 +293,12 @@ extension AnimalRegistrationVC {
             ],
             "accessToken": AppConfig.shared.token
             ] as [String : Any]
-        
+        print(params)
         let urlStr = APIConfiguration.baseURL.rawValue + APIConfiguration.animalRegistration.rawValue
         Alamofire.request(URL(string: urlStr)!, method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:]).responseJSON { (response) in
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+            }
             print(response)
             switch response.result {
             case .success:
@@ -282,7 +314,8 @@ extension AnimalRegistrationVC {
                     let message = dict["message"] as! String
                     DispatchQueue.main.async {
                         Utilities.showAlert(title: kAlertTitle, message: message, viewcontroller: self, okClick: {})
-                    }                }
+                    }
+                }
             case .failure:
                 print("failure")
             }
@@ -290,6 +323,34 @@ extension AnimalRegistrationVC {
     }
     
 }
+
+// MARK: - Zbar delegate
+extension AnimalRegistrationVC: BarcodeScannerCodeDelegate, BarcodeScannerErrorDelegate, BarcodeScannerDismissalDelegate {
+    func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
+        print(code)
+        self.dismiss(animated: true, completion: nil)
+        txt_animalID.text = code
+    }
+    
+    func scanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error) {
+        print(error)
+    }
+    
+    func scannerDidDismiss(_ controller: BarcodeScannerViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Enums
+extension AnimalRegistrationVC {
+    enum AlertMessages: String {
+        case savedSuccessfully = "Animal registered successfully!"
+        case enterCurrentWeight = "Please enter current weight!"
+        case enterDOB = "Please enter Date of Birth!"
+    }
+}
+
+
 
 /*
  [

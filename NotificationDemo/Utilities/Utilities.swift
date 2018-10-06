@@ -11,7 +11,8 @@ import UIKit
 
 
 struct Utilities {
-    
+    static var shared = Utilities()
+    private init(){}
     // MARK: - Alert Methods
     static func showAlert(title:String, message: String, viewcontroller: UIViewController, okClick: @escaping () -> Void) {
         print("Alert called.")
@@ -44,6 +45,33 @@ struct Utilities {
         
         return result
     }
+    
+    //MARK: - Set Root View Controller
+    
+    
+    func setRootViewConroller(controller: String) {
+        if controller == RootVC.Login.rawValue {
+            let loginStoryboard = UIStoryboard(name: "LoginSignup", bundle: nil)
+            let nv = loginStoryboard.instantiateViewController(withIdentifier: StoryboardID.loginNavigationController.rawValue) as! UINavigationController
+            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+            appdelegate.window?.rootViewController = nv
+            appdelegate.window?.makeKeyAndVisible()
+        } else {
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let nv = mainStoryboard.instantiateViewController(withIdentifier: "MenuRootNavigationController") as! UINavigationController
+            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+            appdelegate.window?.rootViewController = nv
+            appdelegate.window?.makeKeyAndVisible()
+        }
+        
+        
+    }
+    // MARK: - SVProgessHUD appearance
+    func setSVP() {
+//        SVProgressHUD.appearance().backgroundColor = UIColor.black
+    }
+
+    
 }
 
 
