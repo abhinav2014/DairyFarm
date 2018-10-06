@@ -56,12 +56,22 @@ struct AppConfig {
         }
     }
     
+    var fcmToken: String {
+        get {
+            return UserDefaults.standard.value(forKey: UserDefaultsKeys.fcmToken.rawValue) as? String ?? ""
+        }
+        set(value) {
+            UserDefaults.standard.set(value, forKey: UserDefaultsKeys.fcmToken.rawValue)
+        }
+    }
+    
     enum UserDefaultsKeys: String {
         case userName = "userName"
         case token = "access_token"
         case email = "email"
         case role = "role"
         case apnsToken = "apnsToken"
+        case fcmToken = "fcmToken"
     }
 }
 

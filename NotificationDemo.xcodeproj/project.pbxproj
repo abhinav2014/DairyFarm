@@ -39,6 +39,7 @@
 		57D53B8C21538EC0001395E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57D53B8A21538EC0001395E9 /* LaunchScreen.storyboard */; };
 		57D53B9721538EC0001395E9 /* NotificationDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D53B9621538EC0001395E9 /* NotificationDemoTests.swift */; };
 		57D53BA221538EC0001395E9 /* NotificationDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D53BA121538EC0001395E9 /* NotificationDemoUITests.swift */; };
+		57F1EA5621692EDD00514A19 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F1EA5521692EDD00514A19 /* InfoVC.swift */; };
 		63DFA6D9719597BB0F72DD6D /* libPods-NotificationDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 573FD72CF75F56D94E52A65E /* libPods-NotificationDemo.a */; };
 		DAAFB76EE8141D615A36084E /* libPods-NotificationDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FDC5C95212DC30150A5D7E2 /* libPods-NotificationDemoTests.a */; };
 		E1F1D7C3E68647304B8A1C6C /* libPods-NotificationDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE26A476A521735E31BC5C5 /* libPods-NotificationDemoUITests.a */; };
@@ -104,6 +105,7 @@
 		57D53B9D21538EC0001395E9 /* NotificationDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotificationDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D53BA121538EC0001395E9 /* NotificationDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDemoUITests.swift; sourceTree = "<group>"; };
 		57D53BA321538EC0001395E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57F1EA5521692EDD00514A19 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		6FDC5C95212DC30150A5D7E2 /* libPods-NotificationDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NotificationDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2FB7D31AFB5EF736D758344 /* Pods-NotificationDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationDemo/Pods-NotificationDemo.release.xcconfig"; sourceTree = "<group>"; };
 		ABCD31A109F62538C04B501C /* Pods-NotificationDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationDemo/Pods-NotificationDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		578C39A32160FFA400C1E223 /* MVC */ = {
 			isa = PBXGroup;
 			children = (
+				57F1EA5121692EA400514A19 /* Info */,
 				578C39D82161857500C1E223 /* AnimalRegistrationVc */,
 				578C39D021617E1400C1E223 /* AIDetailsVC */,
 				578C39BE21616F4A00C1E223 /* AnimalListVC */,
@@ -429,6 +432,38 @@
 				57D53BA321538EC0001395E9 /* Info.plist */,
 			);
 			path = NotificationDemoUITests;
+			sourceTree = "<group>";
+		};
+		57F1EA5121692EA400514A19 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				57F1EA5421692EC100514A19 /* Controller */,
+				57F1EA5321692EBB00514A19 /* View */,
+				57F1EA5221692EB500514A19 /* Model */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		57F1EA5221692EB500514A19 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				57F1EA5521692EDD00514A19 /* InfoVC.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		57F1EA5321692EBB00514A19 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		57F1EA5421692EC100514A19 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		CACC5EDBB683CDB37F84A8DC /* Pods */ = {
@@ -683,6 +718,7 @@
 				578C39AE216100EC00C1E223 /* LoginVC.swift in Sources */,
 				578C39C321616F8A00C1E223 /* AnimalListVC.swift in Sources */,
 				5791B215216404AB00531561 /* LiveStockGroup.swift in Sources */,
+				57F1EA5621692EDD00514A19 /* InfoVC.swift in Sources */,
 				578C39AC216100BF00C1E223 /* SignUpVC.swift in Sources */,
 				5714861521634B9700ABF299 /* AppConfig.swift in Sources */,
 				5791B217216404AB00531561 /* LiveStockBreed.swift in Sources */,
@@ -870,7 +906,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ABCD31A109F62538C04B501C /* Pods-NotificationDemo.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = NotificationDemo/NotificationDemo.entitlements;
 				CODE_SIGN_STYLE = Manual;
@@ -896,7 +932,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A2FB7D31AFB5EF736D758344 /* Pods-NotificationDemo.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = NotificationDemo/NotificationDemo.entitlements;
 				CODE_SIGN_STYLE = Manual;

@@ -250,6 +250,20 @@ extension AnimalRegistrationVC: UITextFieldDelegate {
         }
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text == "" {
+            if textField == txt_dob {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                txt_dob.text = dateFormatter.string(from: Date())
+            } else {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                txt_lastHeatDate.text = dateFormatter.string(from: Date())
+            }
+        }
+    }
+    
     
     @objc func handleDatePickerForDOB(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()

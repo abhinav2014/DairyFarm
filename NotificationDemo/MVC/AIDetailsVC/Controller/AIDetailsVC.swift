@@ -130,6 +130,14 @@ extension AIDetailsVC: UITextFieldDelegate {
         }
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text == "" {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            txt_AIDate.text = dateFormatter.string(from: Date())
+        }
+    }
+    
     
     @objc func handleDatePickerForAIDate(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()

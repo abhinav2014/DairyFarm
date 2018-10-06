@@ -42,17 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
         }
-        
-        
-        
         application.registerForRemoteNotifications()
         
         if AppConfig.shared.token != "" {
             Utilities.shared.setRootViewConroller(controller: RootVC.Menu.rawValue)
         }
-        
-        
-        
         return true
     }
     
@@ -189,7 +183,7 @@ extension AppDelegate : MessagingDelegate {
     // [START refresh_token]
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
-        
+        AppConfig.shared.fcmToken = fcmToken
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
         // TODO: If necessary send token to application server.

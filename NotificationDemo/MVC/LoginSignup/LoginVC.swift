@@ -111,7 +111,7 @@ extension LoginVC {
     
     func callSendDeviceTokenAPI() {
         var params = [String: String]()
-        params = ["accessToken":AppConfig.shared.token,"deviceToken":AppConfig.shared.apnsToken]
+        params = ["accessToken":AppConfig.shared.token,"deviceToken":AppConfig.shared.fcmToken]
         let urlStr = APIConfiguration.baseURL.rawValue + APIConfiguration.registerDevice.rawValue
         Alamofire.request(URL(string: urlStr)!, method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:]).responseJSON { (response) in
             print(response)

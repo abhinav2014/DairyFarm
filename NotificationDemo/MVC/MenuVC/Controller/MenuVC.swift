@@ -113,7 +113,11 @@ extension MenuVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         let menuItem = menuItems[indexPath.row]
         cell.lbl_title.text = menuItem.name
         cell.img_item.image = UIImage(named: menuItem.image!)
-        
+        if indexPath.row == 3 || indexPath.row == 4 {
+            cell.img_comingSoon.isHidden = false
+        } else {
+            cell.img_comingSoon.isHidden = true
+        }
         return cell
     }
     
@@ -125,7 +129,11 @@ extension MenuVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         } else if indexPath.row == 1 {
             let vc = storyboard.instantiateViewController(withIdentifier: "AIDetailsVC") as! AIDetailsVC
             self.navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.row == 5 {
+            let vc = storyboard.instantiateViewController(withIdentifier: "InfoVC") as! InfoVC
+            self.navigationController?.pushViewController(vc, animated: true)
         }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

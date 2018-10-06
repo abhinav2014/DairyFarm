@@ -15,6 +15,9 @@ class MainMenuCell: UICollectionViewCell {
     
     @IBOutlet weak var lbl_title: UILabel!
     
+    @IBOutlet weak var img_comingSoon: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.borderColor = UIColor.black.cgColor
